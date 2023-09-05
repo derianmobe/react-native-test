@@ -87,19 +87,30 @@ const DetailScreen = ({route}: Props) => {
           PictureDir +
           '/image_' +
           Math.floor(date.getTime() + date.getSeconds() / 2) +
-          ext,
+          ext +
+          '.png',
         description: 'Image',
       },
+      path:
+        PictureDir +
+        '/image_' +
+        Math.floor(date.getTime() + date.getSeconds() / 2) +
+        ext +
+        '.png',
     };
+
     config(options)
       .fetch('GET', image_URL)
       .then(res => {
         // Showing alert after successful downloading
-        console.log('res -> ', JSON.stringify(res));
+        console.log('In this location the image was saved ', res.data);
         Alert.alert('Information', 'Image Downloaded Successfully.', [
           {text: 'OK', onPress: () => console.log('OK Pressed')},
         ]);
         // alert('Image Downloaded Successfully.');
+      })
+      .catch(e => {
+        console.log('ERROR: ', e);
       });
   };
 
